@@ -16,7 +16,7 @@
                                 <div class="author">
                                   <img class="avatar border-white" src="/img/faces/face-2.jpg" alt="..."/>
                                   <h4 class="title">{{$profile->firstname.' '.$profile->lastname}}<br />
-                                     <a href="#"><small>{{'@'.$profile->username}}</small></a>
+                                     <a href="#"><small>@farmer</small></a>
                                   </h4>
                                 </div>
                                 <p class="description text-center" >
@@ -114,27 +114,6 @@
                                     @method('PATCH')
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Role</label>
-                                                <input type="text" class="form-control border-input" placeholder="Company" name="role" value="{{$profile->role}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control border-input" placeholder="Username" name="username" value="{{$profile->username}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control border-input" placeholder="Email" name="email" value="{{$profile->email}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
@@ -145,6 +124,21 @@
                                             <div class="form-group">
                                                 <label>Last Name</label>
                                                 <input type="text" class="form-control border-input" placeholder="Last Name" name="lastname" value="{{$profile->lastname}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>User Type</label>
+                                                <input type="text" class="form-control border-input" placeholder="Company" name="user_type" value="farmer">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control border-input" placeholder="Email" name="email" value="{{$profile->email}}">
                                             </div>
                                         </div>
                                     </div>

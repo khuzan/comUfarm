@@ -12,13 +12,13 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">{{$data->firstname.' '.$data->lastname}}</h4>
-                                <p class="category">{{$data->role}}</p>
+                                <p class="category"></p>
                             </div>
                             <div class="content">
                                 <div id="chartPreferences" class="ct-chart ct-perfect-fourth" align="center">
-                                    <img src="{{asset('images/'.$data->image)}}" width="200" height="200">
+                                    <img src="/images/{{$data->image}}" width="200" height="200">
                                 </div>
-                                    {{$data->product_description}}
+                                    {{$data->post_desc}}
                                 <div class="footer">
                                     <div class="chart-legend">
                                         <i class="fa fa-circle text-info"></i> Open

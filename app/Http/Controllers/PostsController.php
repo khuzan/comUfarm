@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\Post;
-use App\Products;
+use App\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session; 
 
@@ -19,7 +19,8 @@ class PostsController extends Controller
     public function index()
     {
         $datas = DB::table('users')
-                ->join('products', 'users.id', '=', 'products.account_number')
+                ->join('posts', 'users.id', '=', 'posts.account_number')
+                ->join('images', 'posts.id', '=' , 'images.post_id')
                 ->get();
        session(['active_dashboard' => 'active']);
        session(['active_profile' => '']);
@@ -43,13 +44,9 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $post = new Post;
         $profile = Auth::user();
-        /*Products::create([
-                'account_number'        => $profile->id,
-                'product_description'   => request('description')
-        ]);
-        return redirect('/dashboard');*/
         if ($request->hasFile('img')) {
             $image_array = $request->file('img');
 
@@ -65,17 +62,24 @@ class PostsController extends Controller
 
                 $image_array[$i]->move($destination_path,$new_image_name);
 
-                $products = new Products;
+                $post = new Post;
+                $image    = new Images;
 
-                $products->account_number      = $profile->id;
-                $products->product_description = request('description');
-                $products->image_size          = $image_size;
-                $products->image               = $new_image_name;
-                $products->save();
+                $post->account_number      = $profile->id;
+                $post->post_desc           = request('description');
+                $post->save();
+
+                $image->post_id            = $post->id;
+                $image->image              = $new_image_name;
+                $image->save();
             }
 
                 return redirect()->back()->with('msg','All image uploaded Successfully!');
         }else{
+
+                $post->account_number      = $profile->id;
+                $post->post_desc = request('description');
+                $post->save();
                  return back()->with('msg','Please Choose any image file!');
         }
     }

@@ -38,6 +38,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
     public function username()
     {
         return 'username';
@@ -51,5 +52,6 @@ class LoginController extends Controller
         else {
             return '/dashboard';
         }
-    }
+    }**/
+    
 }
